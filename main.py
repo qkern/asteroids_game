@@ -1,6 +1,8 @@
 import pygame # type: ignore
 from constants import *
 from player import *
+from asteroid import *
+from asteroidfield import *
 
 def main():
     pygame.init
@@ -11,9 +13,16 @@ def main():
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    Player.containers = (updatable, drawable)
+    asteroids = pygame.sprite.Group()
 
+    Player.containers = (updatable, drawable)
     player = Player(PLAYER_STARTING_LOCATION_X, PLAYER_STARTING_LOCATION_Y)
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+
+    AsteroidField.containers = (updatable)
+
+    asteroidfield = AsteroidField()
     
     while True:
         for event in pygame.event.get():
